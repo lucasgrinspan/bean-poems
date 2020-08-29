@@ -1,0 +1,26 @@
+{
+    "name": "bean-poems",
+    "version": "1.0.0",
+    "description": "A website to share simple poetry",
+    "main": "index.js",
+    "scripts": {
+        "build": "node ./src/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lucasgrinspan/bean-poems.git"
+    },
+    "keywords": [
+        "poetry"
+    ],
+    "author": "Lucas Grinspan",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lucasgrinspan/bean-poems/issues"
+    },
+    "homepage": "https://github.com/lucasgrinspan/bean-poems#readme",
+    "dependencies": {
+        "front-matter": "^4.0.2",
+        "marked": "^1.1.1"
+    }
+}

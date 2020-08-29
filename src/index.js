@@ -1,20 +1,23 @@
 const config = require("../config");
 const fs = require("fs");
+const sqrl = require("squirrelly");
 
-const poems = require("./poems");
-const home = require("./pages/home");
+const createPoem = require("./poems");
 
 const poemsData = fs
     .readdirSync(config.dev.poemsDir)
     .map((poem) => poem.slice(0, -3))
-    .map((poem) => poems.createPoem(poem));
+    .map((poem) => createPoem(poem));
 
+// Create the public folder
 if (!fs.existsSync(config.dev.outDir)) {
     fs.mkdirSync(config.dev.outDir);
 }
 
 // Create the home page
-fs.writeFile(`${config.dev.outDir}/index.html`, home(poemsData), (error) => {
+const homeTemplate = fs.readFileSync("./src/pages/home.html", "utf8");
+const homeHtml = sqrl.render(homeTemplate, config.data);
+fs.writeFile(`${config.dev.outDir}/index.html`, homeHtml, (error) => {
     if (error) {
         throw error;
     }
@@ -27,14 +30,13 @@ poemsData.forEach((poem) => {
         fs.mkdirSync(`${config.dev.outDir}/${poem.path}`);
     }
 
-    fs.writeFile(
-        `${config.dev.outDir}/${poem.path}/index.html`,
-        poems.createPoemHtml(poem),
-        (error) => {
-            if (error) {
-                throw error;
-            }
-            console.log(`${poem.path}/index.html was created successfully`);
+    const poemTemplate = fs.readFileSync("./src/pages/poem.html", "utf8");
+    const poemHtml = sqrl.render(poemTemplate, poem);
+
+    fs.writeFile(`${config.dev.outDir}/${poem.path}/index.html`, poemHtml, (error) => {
+        if (error) {
+            throw error;
         }
-    );
+        console.log(`${poem.path}/index.html was created successfully`);
+    });
 });

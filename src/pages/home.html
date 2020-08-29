@@ -4,21 +4,23 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="${config.data.description}" />
-        <title>Bean Poems</title>
+        <title>{{it.name}}</title>
     </head>
     <body>
         <div>
             <header>
-                <h1>Bean Poems</h1>
+                <h1>{{it.name}}</h1>
                 <p>
                     Little bean sized poems about life and everything in between. Written by
-                    Lucas Grinspan                </p>
+                    {{it.author}}
+                </p>
                 <hr />
             </header>
             <footer>
                 <p>
                     Built with <span role="img" aria-label="love">&#10084;&#65039;</span> by
-                    Lucas Grinspan                </p>
+                    {{it.author}}
+                </p>
             </footer>
         </div>
     </body>

@@ -4,18 +4,35 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="${config.data.description}" />
+        <link rel="stylesheet" href="assets/styles/reset.css" />
+        <link rel="stylesheet" href="assets/styles/main.css" />
         <title>{{it.name}}</title>
     </head>
     <body>
-        <div>
+        <div class="container">
             <header>
                 <h1>{{it.name}}</h1>
                 <p>
                     Little bean sized poems about life and everything in between. Written by
                     {{it.author}}
                 </p>
-                <hr />
             </header>
+            <hr class="decorative" />
+            <div>
+                <h2>Latest Poems</h2>
+                {{@each(it.poems) => poem}}
+                <a href="{{poem.path}}" class="poem-link smooth-shadow">
+                    <p class="poem-title">{{poem.attributes.title}}</p>
+                    <p class="poem-date">{{poem.attributes.date}}</p>
+                    <ul class="category-container">
+                        {{@each(poem.attributes.categories) => category}}
+                        <li class="poem-category" data-category="{{category}}">{{category}}</li>
+                        {{/each}}
+                    </ul>
+                </a>
+                {{/each}}
+                <a href="{{it.catalogPath}}" class="nav-link">See all poems ›</a>
+            </div>
             <footer>
                 <p>
                     Built with <span role="img" aria-label="love">&#10084;&#65039;</span> by

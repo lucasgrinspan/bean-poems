@@ -1,0 +1,159 @@
+:root {
+    --text-dark: #000000;
+    --text-light: #4e4e4e;
+    --link-hover: #3366a1;
+    --light-bg: #e0e0e0;
+    --bg: #ffffff;
+
+    --pastel-blue: #a1dbdb;
+    --pastel-green: #b5ead7;
+    --pastel-red: #ff9aa2;
+}
+
+@font-face {
+    font-family: "Crimson";
+    src: url("../fonts/CrimsonText-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Crimson";
+    src: url("../fonts/CrimsonText-SemiBold.ttf");
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Crimson";
+    src: url("../fonts/CrimsonText-Bold.ttf");
+    font-weight: 800;
+    font-style: normal;
+}
+
+body {
+    font-family: "Crimson", Georgia, "Times New Roman", Times, serif;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+}
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.smooth-shadow {
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028),
+        0 12.5px 10px rgba(0, 0, 0, 0.035), 0 22.3px 17.9px rgba(0, 0, 0, 0.042),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
+}
+
+.smooth-shadow-hover:hover {
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.037), 0 6.7px 5.3px rgba(0, 0, 0, 0.053),
+        0 12.5px 10px rgba(0, 0, 0, 0.065), 0 22.3px 17.9px rgba(0, 0, 0, 0.077),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.093), 0 100px 80px rgba(0, 0, 0, 0.13);
+}
+a {
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+a.nav-link {
+    display: block;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+a.poem-link {
+    text-decoration: none;
+    display: block;
+    transition: border-color 250ms ease-in-out;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+}
+a.poem-link.next {
+    text-align: right;
+}
+a.poem-link:hover {
+    border-color: var(--link-hover);
+}
+.poem-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 5px;
+}
+.poem-page-title {
+    margin-bottom: 3px;
+}
+
+.poem-date {
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+.category-container {
+    display: flex;
+    flex-direction: row;
+}
+.poem-category {
+    background-color: var(--light-bg);
+    padding: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 5px;
+}
+.poem-category:not(:last-child) {
+    margin-right: 5px;
+}
+
+div.poem-navigators {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 15px;
+}
+
+div.poem {
+    line-height: 1.25;
+    font-size: 1.125rem;
+    margin: 15px;
+    margin-top: 20px;
+}
+
+hr.decorative {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-top: 4px double #000000;
+    text-align: center;
+}
+hr.decorative:after {
+    content: "❦";
+    display: inline-block;
+    position: relative;
+    top: -12px;
+    padding: 0 10px;
+    background: var(--bg);
+    color: #000000;
+    font-size: 20px;
+}
+
+*[data-category="Nature"] {
+    background-color: var(--pastel-green);
+}
+*[data-category="Ocean"] {
+    background-color: var(--pastel-blue);
+}

@@ -16,7 +16,11 @@ if (!fs.existsSync(config.dev.outDir)) {
 
 // Create the home page
 const homeTemplate = fs.readFileSync("./src/pages/home.html", "utf8");
-const homeHtml = sqrl.render(homeTemplate, config.data);
+const homeHtml = sqrl.render(homeTemplate, {
+    ...config.data,
+    poems: poemsData.slice(0, 3), // 3 most recent poems
+});
+
 fs.writeFile(`${config.dev.outDir}/index.html`, homeHtml, (error) => {
     if (error) {
         throw error;
@@ -31,7 +35,7 @@ poemsData.forEach((poem) => {
     }
 
     const poemTemplate = fs.readFileSync("./src/pages/poem.html", "utf8");
-    const poemHtml = sqrl.render(poemTemplate, poem);
+    const poemHtml = sqrl.render(poemTemplate, { poem, config });
 
     fs.writeFile(`${config.dev.outDir}/${poem.path}/index.html`, poemHtml, (error) => {
         if (error) {

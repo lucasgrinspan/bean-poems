@@ -3,18 +3,37 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="${data.attributes.description}" />
-        <title>Bean Poems | {{it.attributes.title}}</title>
-        <link rel=”stylesheet” href=”./assets/main.css” />
+        <meta name="description" content="{{it.poem.attributes.description}}" />
+        <link rel="stylesheet" href="../assets/styles/reset.css" type="text/css" />
+        <link rel="stylesheet" href="../assets/styles/main.css" type="text/css" />
+        <title>{{it.config.data.name}} | {{it.poem.attributes.title}}</title>
     </head>
     <body>
-        <header>
-            <a href="/">Go back home</a>
-        </header>
-        <div class="content">
-            <h1>{{it.attributes.title}}</h1>
+        <div class="container">
+            <header>
+                <a href="/" class="nav-link">‹ Go back home</a>
+            </header>
+            <div class="content">
+                <h2 class="poem-page-title">{{it.poem.attributes.title}}</h2>
+                <p class="poem-date">{{it.poem.attributes.date}}</p>
+                <ul class="category-container">
+                    {{@each(it.poem.attributes.categories) => category}}
+                    <li class="poem-category" data-category="{{category}}">{{category}}</li>
+                    {{/each}}
+                </ul>
+                <div class="poem">{{it.poem.body | safe}}</div>
+            </div>
             <hr />
-            {{it.body | safe}}
+            <div class="poem-navigators">
+                <a href="#" class="poem-link">
+                    <p class="link-desc">Previous</p>
+                    <p class="poem-title">A Poem Title</p>
+                </a>
+                <a href="#" class="poem-link next">
+                    <p class="link-desc">Next</p>
+                    <p class="poem-title">A Poem Title</p>
+                </a>
+            </div>
         </div>
     </body>
 </html>

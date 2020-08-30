@@ -4,17 +4,31 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="${config.data.description}" />
+        <link rel="stylesheet" href="assets/styles/reset.css" />
+        <link rel="stylesheet" href="assets/styles/main.css" />
         <title>Bean Poems</title>
     </head>
     <body>
-        <div>
+        <div class="container">
             <header>
                 <h1>Bean Poems</h1>
                 <p>
                     Little bean sized poems about life and everything in between. Written by
                     Lucas Grinspan                </p>
-                <hr />
             </header>
+            <hr class="decorative" />
+            <div>
+                <h2>Latest Poems</h2>
+                                <a href="octopus" class="poem-link smooth-shadow">
+                    <p class="poem-title">The Octopus Project</p>
+                    <p class="poem-date">August 29, 2020</p>
+                    <ul class="category-container">
+                                                <li class="poem-category" data-category="Nature">Nature</li>
+                                                <li class="poem-category" data-category="Ocean">Ocean</li>
+                                            </ul>
+                </a>
+                                <a href="./catalog" class="nav-link">See all poems ›</a>
+            </div>
             <footer>
                 <p>
                     Built with <span role="img" aria-label="love">&#10084;&#65039;</span> by

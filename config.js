@@ -8,6 +8,7 @@ const config = {
         description: "Little poems about life and everything in between.",
         author: "Lucas Grinspan",
         photographer: "Lianne D'Arcy",
+        catalogPath: "./catalog",
     },
 };
 

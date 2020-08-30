@@ -25,14 +25,21 @@
             </div>
             <hr />
             <div class="poem-navigators">
+                {{@if(it.prevPoem)}}
                 <a href="#" class="poem-link">
                     <p class="link-desc">Previous</p>
                     <p class="poem-title">A Poem Title</p>
                 </a>
+                {{#else}}
+                <div></div>
+                {{/if}} {{@if(it.nextPoem)}}
                 <a href="#" class="poem-link next">
                     <p class="link-desc">Next</p>
                     <p class="poem-title">A Poem Title</p>
                 </a>
+                {{#else}}
+                <div></div>
+                {{/if}}
             </div>
         </div>
     </body>

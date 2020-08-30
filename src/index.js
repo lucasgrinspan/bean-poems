@@ -29,13 +29,19 @@ fs.writeFile(`${config.dev.outDir}/index.html`, homeHtml, (error) => {
 });
 
 // Create the pages for each poem
-poemsData.forEach((poem) => {
+poemsData.forEach((poem, index) => {
     if (!fs.existsSync(`${config.dev.outDir}/${poem.path}`)) {
         fs.mkdirSync(`${config.dev.outDir}/${poem.path}`);
     }
+    const poemData = {
+        poem, // poem data
+        config, // site data
+        nextPoem: index === poemsData.length - 1 ? null : poemsData[index + 1],
+        prevPoem: index === 0 ? null : poemsData[index - 1],
+    };
 
     const poemTemplate = fs.readFileSync("./src/pages/poem.html", "utf8");
-    const poemHtml = sqrl.render(poemTemplate, { poem, config });
+    const poemHtml = sqrl.render(poemTemplate, poemData);
 
     fs.writeFile(`${config.dev.outDir}/${poem.path}/index.html`, poemHtml, (error) => {
         if (error) {

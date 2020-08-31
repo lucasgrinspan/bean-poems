@@ -2,8 +2,14 @@ const config = require("../config");
 const fs = require("fs");
 const path = require("path");
 const sqrl = require("squirrelly");
+const { logSuccess, logError } = require("./utils");
 
 const createPoem = require("./poems");
+
+// Prepare the squirrelly helpers
+sqrl.filters.define("toArray", (array) => {
+    return `[ ${array.map((item) => JSON.stringify(item))}]`;
+});
 
 // Prepare all of the poems
 const poemsData = fs
@@ -26,9 +32,10 @@ const homeHtml = sqrl.render(homeTemplate, {
 });
 fs.writeFile(`${config.dev.outDir}/index.html`, homeHtml, (error) => {
     if (error) {
+        logError("index.html");
         throw error;
     }
-    console.log(`index.html was created successfully`);
+    logSuccess("index.html");
 });
 
 // Create the pages for each poem
@@ -48,15 +55,15 @@ poemsData.forEach((poem, index) => {
 
     fs.writeFile(`${config.dev.outDir}/${poem.path}/index.html`, poemHtml, (error) => {
         if (error) {
+            logError(poem.path + "/index.html");
             throw error;
         }
-        console.log(`${poem.path}/index.html was created successfully`);
+        logSuccess(poem.path + "/index.html");
     });
 });
 
 // Create any other pages
 const pagesFolder = path.join(__dirname, config.dev.pagesDir);
-console.log(pagesFolder);
 fs.readdir(pagesFolder, (err, files) => {
     if (err) {
         console.log("Error getting pages folder.");
@@ -85,9 +92,10 @@ fs.readdir(pagesFolder, (err, files) => {
             // Place HTML in public/
             fs.writeFile(`${config.dev.outDir}/${pageName}/index.html`, pageHtml, (error) => {
                 if (error) {
+                    logError(pageName + "/index.html");
                     throw error;
                 }
-                console.log(`${pageName}/index.html was created successfully`);
+                logSuccess(pageName + "/index.html");
             });
         });
     }

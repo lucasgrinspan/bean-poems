@@ -10,6 +10,8 @@
     --pastel-green: #b5ead7;
     --pastel-red: #ff9aa2;
     --pastel-brown: #beb091;
+
+    --font-stack: "Crimson", Georgia, "Times New Roman", Times, serif;
 }
 
 @font-face {
@@ -32,7 +34,7 @@
 }
 
 body {
-    font-family: "Crimson", Georgia, "Times New Roman", Times, serif;
+    font-family: var(--font-stack);
     display: flex;
     justify-content: center;
     background-color: var(--bg);
@@ -43,7 +45,8 @@ h1 {
     font-size: 3rem;
     font-weight: 800;
 }
-h2 {
+h2,
+p.large {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 10px;
@@ -51,6 +54,12 @@ h2 {
 p {
     font-size: 1rem;
     margin-bottom: 5px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .smooth-shadow {
@@ -75,20 +84,36 @@ a.nav-link {
     margin-bottom: 10px;
 }
 
-a.poem-link {
+button {
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-family: var(--font-stack);
+}
+
+button,
+.poem-link {
     text-decoration: none;
     display: block;
-    transition: border-color 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
     margin-bottom: 20px;
     padding: 10px;
     border: 2px solid var(--inactive);
     border-radius: 10px;
+    background-color: transparent;
 }
-a.poem-link.next {
+
+.poem-link.next {
     text-align: right;
 }
-a.poem-link:hover {
+button:hover,
+.poem-link:hover {
     border-color: var(--active);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--active);
+    color: var(--bg);
 }
 .poem-title {
     font-weight: 600;

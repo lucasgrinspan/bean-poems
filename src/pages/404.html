@@ -15,7 +15,18 @@
                 <p>Oops, this page wasn't found.</p>
             </header>
             <img class="square-image" src="/assets/images/empty.png" alt="An empty cup of coffee" />
-            <a href="../" class="nav-link">‹ Go back home</a>
+            <a href="/" class="nav-link">‹ Go back home</a>
+            <p class="large">or...</p>
+            <button class="center" onclick="navigateToRandomPoem()">Try a random poem!</button>
         </div>
+        <script>
+            const navigateToRandomPoem = () => {
+                const poems = {{it.poems | toArray | safe}};
+                const randomPoem = poems[Math.floor(Math.random() * poems.length)];
+                const path = randomPoem.path;
+
+                window.location.href = "/" + path;
+            };
+        </script>
     </body>
 </html>

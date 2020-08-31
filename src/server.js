@@ -8,4 +8,4 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/404/index.html"));
 });
 
-app.listen(3000, () => console.log("Server started"));
+app.listen(5000, () => console.log("Server started"));

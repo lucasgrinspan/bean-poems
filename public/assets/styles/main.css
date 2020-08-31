@@ -1,9 +1,10 @@
 :root {
-    --text-dark: #000000;
+    --text-dark: #201005;
     --text-light: #4e4e4e;
-    --link-hover: #3366a1;
+    --inactive: #a19e90;
+    --active: #3366a1;
     --light-bg: #e0e0e0;
-    --bg: #ffffff;
+    --bg: #ebe9dd;
 
     --pastel-blue: #a1dbdb;
     --pastel-green: #b5ead7;
@@ -34,6 +35,8 @@ body {
     font-family: "Crimson", Georgia, "Times New Roman", Times, serif;
     display: flex;
     justify-content: center;
+    background-color: var(--bg);
+    color: var(--text-dark);
 }
 
 h1 {
@@ -78,14 +81,14 @@ a.poem-link {
     transition: border-color 250ms ease-in-out;
     margin-bottom: 20px;
     padding: 10px;
-    border: 2px solid transparent;
+    border: 2px solid var(--inactive);
     border-radius: 10px;
 }
 a.poem-link.next {
     text-align: right;
 }
 a.poem-link:hover {
-    border-color: var(--link-hover);
+    border-color: var(--active);
 }
 .poem-title {
     font-weight: 600;

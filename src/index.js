@@ -20,14 +20,29 @@ if (!fs.existsSync(config.dev.outDir)) {
 const homeTemplate = fs.readFileSync("./src/pages/home.html", "utf8");
 const homeHtml = sqrl.render(homeTemplate, {
     ...config.data,
-    poems: poemsData.slice(0, 3), // 3 most recent poems
+    poems: poemsData, // 3 most recent poems
 });
-
 fs.writeFile(`${config.dev.outDir}/index.html`, homeHtml, (error) => {
     if (error) {
         throw error;
     }
     console.log(`index.html was created successfully`);
+});
+
+// Create the catalog page
+const catalogTemplate = fs.readFileSync("./src/pages/catalog.html", "utf8");
+if (!fs.existsSync(`${config.dev.outDir}/catalog`)) {
+    fs.mkdirSync(`${config.dev.outDir}/catalog`);
+}
+const catalogHtml = sqrl.render(catalogTemplate, {
+    ...config.data,
+    poems: poemsData, // 3 most recent poems
+});
+fs.writeFile(`${config.dev.outDir}/catalog/index.html`, catalogHtml, (error) => {
+    if (error) {
+        throw error;
+    }
+    console.log(`catalog/index.html was created successfully`);
 });
 
 // Create the pages for each poem

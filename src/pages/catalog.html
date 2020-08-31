@@ -3,25 +3,20 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="{{it.description}}" />
-        <link rel="stylesheet" href="assets/styles/reset.css" />
-        <link rel="stylesheet" href="assets/styles/main.css" />
-        <title>{{it.name}}</title>
+        <meta name="description" content="${config.data.description}" />
+        <link rel="stylesheet" href="../assets/styles/reset.css" />
+        <link rel="stylesheet" href="../assets/styles/main.css" />
+        <title>{{it.name}} | Catalog</title>
     </head>
     <body>
         <div class="container">
             <header>
-                <h1>{{it.name}}</h1>
-                <p>
-                    Little bean-sized poems about life and everything in between. Written by
-                    {{it.author}}
-                </p>
+                <h1>All Poems</h1>
+                <a href="../index.html" class="nav-link">‹ Go back home</a>
             </header>
-            <hr class="decorative" />
             <div>
-                <h2>Latest Poems</h2>
-                {{@each(it.poems.slice(0, 3)) => poem}}
-                <a href="{{poem.path}}/index.html" class="poem-link">
+                {{@each(it.poems) => poem}}
+                <a href="../{{poem.path}}/index.html" class="poem-link">
                     <p class="poem-title">{{poem.attributes.title}}</p>
                     <p class="poem-date">{{poem.attributes.date}}</p>
                     <ul class="category-container">
@@ -31,9 +26,6 @@
                     </ul>
                 </a>
                 {{/each}}
-                <a href="{{it.catalogPath}}/index.html" class="nav-link">
-                    See all {{it.poems.length}} poems ›
-                </a>
             </div>
             <footer>
                 <!-- <p>

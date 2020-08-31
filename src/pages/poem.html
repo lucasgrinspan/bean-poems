@@ -11,7 +11,7 @@
     <body>
         <div class="container">
             <header>
-                <a href="/" class="nav-link">‹ Go back home</a>
+                <a href="../index.html" class="nav-link">‹ Go back home</a>
             </header>
             <div class="content">
                 <h2 class="poem-page-title">{{it.poem.attributes.title}}</h2>
@@ -26,16 +26,16 @@
             <hr />
             <div class="poem-navigators">
                 {{@if(it.prevPoem)}}
-                <a href="#" class="poem-link">
+                <a href="../{{it.prevPoem.path}}/index.html" class="poem-link">
                     <p class="link-desc">Previous</p>
-                    <p class="poem-title">A Poem Title</p>
+                    <p class="poem-title">{{it.prevPoem.attributes.title}}</p>
                 </a>
                 {{#else}}
                 <div></div>
                 {{/if}} {{@if(it.nextPoem)}}
-                <a href="#" class="poem-link next">
+                <a href="../{{it.nextPoem.path}}/index.html" class="poem-link next">
                     <p class="link-desc">Next</p>
-                    <p class="poem-title">A Poem Title</p>
+                    <p class="poem-title">{{it.nextPoem.attributes.title}}</p>
                 </a>
                 {{#else}}
                 <div></div>

@@ -1,5 +1,6 @@
 const config = require("../config");
 const fs = require("fs");
+const path = require("path");
 const sqrl = require("squirrelly");
 
 const createPoem = require("./poems");
@@ -19,30 +20,15 @@ if (!fs.existsSync(config.dev.outDir)) {
 // Create the home page
 const homeTemplate = fs.readFileSync("./src/pages/home.html", "utf8");
 const homeHtml = sqrl.render(homeTemplate, {
-    ...config.data,
-    poems: poemsData, // 3 most recent poems
+    data: config.data,
+    poems: poemsData,
+    paths: config.paths,
 });
 fs.writeFile(`${config.dev.outDir}/index.html`, homeHtml, (error) => {
     if (error) {
         throw error;
     }
     console.log(`index.html was created successfully`);
-});
-
-// Create the catalog page
-const catalogTemplate = fs.readFileSync("./src/pages/catalog.html", "utf8");
-if (!fs.existsSync(`${config.dev.outDir}/catalog`)) {
-    fs.mkdirSync(`${config.dev.outDir}/catalog`);
-}
-const catalogHtml = sqrl.render(catalogTemplate, {
-    ...config.data,
-    poems: poemsData, // 3 most recent poems
-});
-fs.writeFile(`${config.dev.outDir}/catalog/index.html`, catalogHtml, (error) => {
-    if (error) {
-        throw error;
-    }
-    console.log(`catalog/index.html was created successfully`);
 });
 
 // Create the pages for each poem
@@ -66,4 +52,43 @@ poemsData.forEach((poem, index) => {
         }
         console.log(`${poem.path}/index.html was created successfully`);
     });
+});
+
+// Create any other pages
+const pagesFolder = path.join(__dirname, config.dev.pagesDir);
+console.log(pagesFolder);
+fs.readdir(pagesFolder, (err, files) => {
+    if (err) {
+        console.log("Error getting pages folder.");
+    } else {
+        const pages = files.filter((file) => {
+            // Remove home and poem since those have special handlings
+            return file !== "home.html" && file !== "poem.html";
+        });
+
+        pages.forEach((page) => {
+            const pageName = page.slice(0, -5); // remove .html
+            const templatePath = path.join(__dirname, config.dev.pagesDir, page);
+            const template = fs.readFileSync(templatePath, "utf8");
+
+            // Create folder for page
+            if (!fs.existsSync(`${config.dev.outDir}/${pageName}`)) {
+                fs.mkdirSync(`${config.dev.outDir}/${pageName}`);
+            }
+
+            // Populate HTML
+            const pageHtml = sqrl.render(template, {
+                data: config.data,
+                poems: poemsData,
+            });
+
+            // Place HTML in public/
+            fs.writeFile(`${config.dev.outDir}/${pageName}/index.html`, pageHtml, (error) => {
+                if (error) {
+                    throw error;
+                }
+                console.log(`${pageName}/index.html was created successfully`);
+            });
+        });
+    }
 });

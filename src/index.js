@@ -4,10 +4,12 @@ const sqrl = require("squirrelly");
 
 const createPoem = require("./poems");
 
+// Prepare all of the poems
 const poemsData = fs
     .readdirSync(config.dev.poemsDir)
     .map((poem) => poem.slice(0, -3))
-    .map((poem) => createPoem(poem));
+    .map((poem) => createPoem(poem))
+    .sort((a, b) => new Date(b.attributes.date) - new Date(a.attributes.date));
 
 // Create the public folder
 if (!fs.existsSync(config.dev.outDir)) {

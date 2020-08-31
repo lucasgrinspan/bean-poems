@@ -7,10 +7,10 @@ categories:
     - Nature
 ---
 
-For weeks we wait, a girl and a boy
+For weeks we wait, a girl and boy
 
 She waters, tends with glee
 
-At last, she's free and green with joy
+At last, it's free and green with joy
 
 A mango from that tree!

@@ -21,7 +21,7 @@
             <div>
                 <h2>Latest Poems</h2>
                 {{@each(it.poems) => poem}}
-                <a href="{{poem.path}}/index.html" class="poem-link smooth-shadow">
+                <a href="{{poem.path}}/index.html" class="poem-link">
                     <p class="poem-title">{{poem.attributes.title}}</p>
                     <p class="poem-date">{{poem.attributes.date}}</p>
                     <ul class="category-container">

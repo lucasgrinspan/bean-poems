@@ -4,6 +4,7 @@
     "description": "A website to share simple poetry",
     "main": "index.js",
     "scripts": {
+        "start": "node ./src/server.js",
         "build": "node ./src/index.js"
     },
     "repository": {
@@ -20,6 +21,7 @@
     },
     "homepage": "https://github.com/lucasgrinspan/bean-poems#readme",
     "dependencies": {
+        "express": "^4.17.1",
         "front-matter": "^4.0.2",
         "marked": "^1.1.1"
     },

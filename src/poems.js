@@ -21,6 +21,12 @@ const getPoems = () => {
         .sort((a, b) => new Date(b.date) - new Date(a.date));
 };
 
-const getPoemsApi = () => {};
+const getPoemsApi = () => {
+    return getPoems().map((poemData, index) => {
+        const { path, ...poem } = poemData;
+        poem.id = index;
+        return poem;
+    });
+};
 
-module.exports = { createPoem, getPoems };
+module.exports = { getPoemsApi, getPoems };

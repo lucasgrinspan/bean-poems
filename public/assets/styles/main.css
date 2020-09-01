@@ -5,6 +5,9 @@
     --active: #3366a1;
     --light-bg: #e0e0e0;
     --bg: #ebe9dd;
+    --dark-bg: #291f11;
+
+    --light-text: #e5e1ba;
 
     --code-bg: #fdf6e2;
 
@@ -17,7 +20,11 @@
     --syntax-2: #1d7012;
     --syntax-3: #222a9e;
 
+    --love-color: #f02121;
+
     --font-stack: "Crimson", Georgia, "Times New Roman", Times, serif;
+
+    --max-width: 800px;
 }
 
 @font-face {
@@ -44,7 +51,8 @@ html {
 body {
     font-family: var(--font-stack);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background-color: var(--bg);
     color: var(--text-dark);
     overflow-x: hidden;
@@ -74,6 +82,7 @@ code {
     white-space: nowrap;
     max-width: 100%;
 }
+
 code,
 .code {
     border-radius: 5px;
@@ -123,7 +132,22 @@ a.nav-link {
     font-size: 1.25rem;
     margin-bottom: 10px;
 }
-
+footer {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+footer a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--light-text);
+}
+footer ul {
+    margin-bottom: 10px;
+}
 button {
     font-size: 1.25rem;
     font-weight: 600;
@@ -200,7 +224,7 @@ div.section {
 
 div.container {
     width: 95%;
-    max-width: 800px;
+    max-width: var(--max-width);
     padding: 15px;
 }
 
@@ -260,4 +284,35 @@ span.token-string {
 }
 span.token-number {
     color: var(--syntax-3);
+}
+
+.heart {
+    background-color: var(--light-text);
+    display: inline-block;
+    height: 10px;
+    margin: 0 5px;
+    position: relative;
+    top: 0;
+    transform: rotate(-45deg);
+    width: 10px;
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    background-color: var(--light-text);
+    border-radius: 50%;
+    height: 10px;
+    position: absolute;
+    width: 10px;
+}
+
+.heart:before {
+    top: -6px;
+    left: 0;
+}
+
+.heart:after {
+    left: 6px;
+    top: 0;
 }

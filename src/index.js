@@ -19,12 +19,25 @@ if (!fs.existsSync(config.dev.outDir)) {
     fs.mkdirSync(config.dev.outDir);
 }
 
+// Prepare the HTML components
+const componentFiles = fs.readdirSync(path.join(__dirname, config.dev.componentsDir));
+const components = {};
+componentFiles.forEach((file) => {
+    const componentName = file.slice(0, -5); // removes .html
+    const componentHtml = fs.readFileSync(
+        path.join(__dirname, config.dev.componentsDir, file),
+        "utf8"
+    );
+    components[componentName] = componentHtml;
+});
+
 // Create the home page
 const homeTemplate = fs.readFileSync("./src/pages/home.html", "utf8");
 const homeHtml = sqrl.render(homeTemplate, {
     data: config.data,
     poems: poemsData,
     paths: config.paths,
+    components,
 });
 fs.writeFile(`${config.dev.outDir}/index.html`, homeHtml, (error) => {
     if (error) {
@@ -42,6 +55,7 @@ poemsData.forEach((poem, index) => {
     const poemData = {
         poem, // poem data
         config, // site data
+        components,
         nextPoem: index === poemsData.length - 1 ? null : poemsData[index + 1],
         prevPoem: index === 0 ? null : poemsData[index - 1],
     };
@@ -83,6 +97,7 @@ fs.readdir(pagesFolder, (err, files) => {
             const pageHtml = sqrl.render(template, {
                 data: config.data,
                 poems: poemsData,
+                components,
             });
 
             // Place HTML in public/

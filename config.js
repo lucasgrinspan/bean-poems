@@ -3,6 +3,7 @@ const config = {
         poemsDir: "./poems",
         outDir: "./public",
         pagesDir: "./pages",
+        componentsDir: "./components",
     },
     data: {
         name: "Bean Poems",

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="The API page for beanpoems.com" />
+        <link rel="stylesheet" href="/assets/styles/reset.css" />
+        <link rel="stylesheet" href="/assets/styles/main.css" />
+        <title>{{it.data.name}} | API</title>
+        <!-- https://pinetools.com/syntax-highlighter for syntax highlighting -->
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Poems to Go</h1>
+                <a href="../" class="nav-link">‹ Go back home</a>
+                <p>
+                    This API serves the poems featured on this site. Why does a poetry website need
+                    an API? I don't know.
+                </p>
+            </header>
+            <div>
+                <h2>Documentation</h2>
+                <p>
+                    The API is free to use, just try not to break anything. The base URL is
+                    <code>https://www.beanpoems.com/api/</code>. The poem text uses
+                    <code>\n</code> to specify line breaks in the poem.
+                </p>
+                <div class="section">
+                    <h3>Get all poems</h3>
+                    <code class="margin">GET https://www.beanpoems.com/api/poems</code>
+                    <p>Returns all of the poems</p>
+                    <pre class="code block">
+[
+    {
+        <span class="token-attr">"title"</span>: <span class="token-string" >"Coffee"</span>,
+        <span class="token-attr">"description"</span>: <span class="token-string" >"A poem about coffee"</span>,
+        <span class="token-attr">"date"</span>: <span class="token-string" >"2020-07-15T20:00:00.000Z"</span>,
+        <span class="token-attr">"categories"</span>: [<span class="token-string" >"Coffee"</span>, <span class="token-string" >"Life"</span>],
+        <span class="token-attr">"body"</span>: <span class="token-string" >"Heat and the beans and ..."</span>,
+        <span class="token-attr">"id"</span>: <span class="token-number">0</span>
+    },
+    <span class="token-attr">...</span>
+]  
+</pre>
+                </div>
+                <div class="section">
+                    <h3>Get one poem</h3>
+                    <code class="margin">GET https://www.beanpoems.com/api/:id</code>
+                    <p>
+                        Returns a poem specified by <code>:id</code>. If the ID provided is not a
+                        number or if the poem does not exist, then a 400 status code and an error
+                        message are returned.
+                    </p>
+                    <pre class="code block">
+{
+    <span class="token-attr">"title"</span>: <span class="token-string" token-number>"The Mango"</span>,
+    <span class="token-attr">"description"</span>: <span class="token-string" token-number>"A poem about the mango"</span>,
+    <span class="token-attr">"date"</span>: <span class="token-string" token-number>"2020-08-13T21:30:00.000Z"</span>,
+    <span class="token-attr">"categories"</span>: [<span class="token-string" token-number>"Life"</span>, <span class="token-string" token-number>"Nature"</span>],
+    <span class="token-attr">"body"</span>: <span class="token-string" token-number>"For weeks they wait, a..."</span>,
+    <span class="token-attr">"id"</span>: <span class="token-number">2</span>
+}                           
+</pre>
+                </div>
+                <div class="section">
+                    <h3>Get a random poem</h3>
+                    <code class="margin">GET https://www.beanpoems.com/api/random</code>
+                    <p>
+                        Returns a random poem from the site. This could be used as part of a Magic
+                        Mirror or as a "Poem of the Day" feature.
+                    </p>
+                    <pre class="code block">
+{
+    <span class="token-attr">"title"</span>: <span class="token-string" token-number>"The Octopus Project"</span>,
+    <span class="token-attr">"description"</span>: <span class="token-string" token-number>"A poem about octopi"</span>,
+    <span class="token-attr">"date"</span>: <span class="token-string" token-number>"2020-06-26T19:00:00.000Z"</span>,
+    <span class="token-attr">"categories"</span>: [<span class="token-string" token-number>"Nature"</span>, <span class="token-string" token-number>"Ocean"</span>],
+    <span class="token-attr">"body"</span>: <span class="token-string" token-number>"This octopus tells ..."</span>
+    <span class="token-attr">"id"</span>: <span class="token-number">3</span>
+}
+</pre>
+                </div>
+            </div>
+            <footer>
+                <!-- <p>
+                    Built with <span role="img" aria-label="love">&#10084;&#65039;</span> by
+                    {{it.author}}
+                </p> -->
+            </footer>
+        </div>
+    </body>
+</html>

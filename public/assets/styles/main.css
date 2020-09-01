@@ -6,10 +6,16 @@
     --light-bg: #e0e0e0;
     --bg: #ebe9dd;
 
+    --code-bg: #fdf6e2;
+
     --pastel-blue: #a1dbdb;
     --pastel-green: #b5ead7;
     --pastel-red: #ff9aa2;
     --pastel-brown: #beb091;
+
+    --syntax-1: #851d1d;
+    --syntax-2: #1d7012;
+    --syntax-3: #222a9e;
 
     --font-stack: "Crimson", Georgia, "Times New Roman", Times, serif;
 }
@@ -32,34 +38,68 @@
     font-weight: 800;
     font-style: normal;
 }
-
+html {
+    font-size: 18px;
+}
 body {
     font-family: var(--font-stack);
     display: flex;
     justify-content: center;
     background-color: var(--bg);
     color: var(--text-dark);
+    overflow-x: hidden;
 }
 
 h1 {
     font-size: 3rem;
     font-weight: 800;
 }
-h2,
-p.large {
+p.large,
+h2 {
     font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+h3 {
+    font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 10px;
 }
 p {
     font-size: 1rem;
-    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+code {
+    white-space: nowrap;
+    max-width: 100%;
+}
+code,
+.code {
+    border-radius: 5px;
+    background-color: var(--code-bg);
+    padding: 1px;
+    padding-left: 7px;
+    padding-right: 7px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    overflow-x: scroll;
+}
+.code.block {
+    line-height: 1.5;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 5px;
 }
 
 .center {
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+.margin {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .smooth-shadow {
@@ -100,6 +140,9 @@ button,
     border: 2px solid var(--inactive);
     border-radius: 10px;
     background-color: transparent;
+}
+.poem-link p {
+    line-height: 1.2;
 }
 
 .poem-link.next {
@@ -149,8 +192,14 @@ div.poem-navigators {
     justify-content: space-between;
 }
 
+div.section {
+    margin: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 div.container {
-    width: 100%;
+    width: 95%;
     max-width: 800px;
     padding: 15px;
 }
@@ -188,7 +237,7 @@ img.square-image {
     margin-bottom: 15px;
     display: block;
 }
-
+/* category highlighting */
 *[data-category="Nature"] {
     background-color: var(--pastel-green);
 }
@@ -200,4 +249,15 @@ img.square-image {
 }
 *[data-category="Coffee"] {
     background-color: var(--pastel-brown);
+}
+
+/* syntax highlighting */
+span.token-attr {
+    color: var(--syntax-1);
+}
+span.token-string {
+    color: var(--syntax-2);
+}
+span.token-number {
+    color: var(--syntax-3);
 }

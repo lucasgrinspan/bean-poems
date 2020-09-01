@@ -4,7 +4,7 @@ const path = require("path");
 const sqrl = require("squirrelly");
 const { logSuccess, logError } = require("./utils");
 
-const { getPoems, createPoem } = require("./poems");
+const { getPoems } = require("./poems");
 
 // Prepare the squirrelly helpers
 sqrl.filters.define("toArray", (array) => {

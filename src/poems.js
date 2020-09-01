@@ -1,12 +1,9 @@
 const config = require("../config");
-const fm = require("front-matter");
-const marked = require("marked");
 const fs = require("fs");
 
 const createPoem = (poemPath) => {
-    const data = fs.readFileSync(`${config.dev.poemsDir}/${poemPath}.md`, "utf8");
-    const content = fm(data);
-    content.body = marked(content.body);
+    const data = fs.readFileSync(`${config.dev.poemsDir}/${poemPath}.json`, "utf8");
+    const content = JSON.parse(data);
     content.path = poemPath;
     return content;
 };
@@ -14,9 +11,9 @@ const createPoem = (poemPath) => {
 const getPoems = () => {
     return fs
         .readdirSync(config.dev.poemsDir)
-        .map((poem) => poem.slice(0, -3))
+        .map((poem) => poem.slice(0, -5)) //remove .json
         .map((poem) => createPoem(poem))
-        .sort((a, b) => new Date(b.attributes.date) - new Date(a.attributes.date));
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
 };
 
 const getPoemsApi = () => {};

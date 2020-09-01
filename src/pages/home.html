@@ -22,10 +22,10 @@
                 <h2>Latest Poems</h2>
                 {{@each(it.poems.slice(0, 3)) => poem}}
                 <a href="{{poem.path}}" class="poem-link">
-                    <p class="poem-title">{{poem.attributes.title}}</p>
-                    <p class="poem-date">{{poem.attributes.date}}</p>
+                    <p class="poem-title">{{poem.title}}</p>
+                    <p class="poem-date">{{poem.date}}</p>
                     <ul class="category-container">
-                        {{@each(poem.attributes.categories) => category}}
+                        {{@each(poem.categories) => category}}
                         <li class="poem-category" data-category="{{category}}">{{category}}</li>
                         {{/each}}
                     </ul>

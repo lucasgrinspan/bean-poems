@@ -4,7 +4,7 @@ const path = require("path");
 const sqrl = require("squirrelly");
 const { logSuccess, logError } = require("./utils");
 
-const createPoem = require("./poems");
+const { getPoems, createPoem } = require("./poems");
 
 // Prepare the squirrelly helpers
 sqrl.filters.define("toArray", (array) => {
@@ -12,11 +12,7 @@ sqrl.filters.define("toArray", (array) => {
 });
 
 // Prepare all of the poems
-const poemsData = fs
-    .readdirSync(config.dev.poemsDir)
-    .map((poem) => poem.slice(0, -3))
-    .map((poem) => createPoem(poem))
-    .sort((a, b) => new Date(b.attributes.date) - new Date(a.attributes.date));
+const poemsData = getPoems();
 
 // Create the public folder
 if (!fs.existsSync(config.dev.outDir)) {

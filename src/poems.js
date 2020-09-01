@@ -5,6 +5,11 @@ const createPoem = (poemPath) => {
     const data = fs.readFileSync(`${config.dev.poemsDir}/${poemPath}.json`, "utf8");
     const content = JSON.parse(data);
     content.path = poemPath;
+    content.date = new Date(content.date).toLocaleString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
     return content;
 };
 

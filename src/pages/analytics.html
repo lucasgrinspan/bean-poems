@@ -27,7 +27,7 @@
                 to make a unique identifier for them. The server code combines all of this
                 information into a single hash using SHA256. Specifically, the information is:
             </p>
-            <ul class="body-text">
+            <ul class="body-text list">
                 <li>IP address</li>
                 <li>User Agent</li>
                 <li>Current day</li>
@@ -107,5 +107,6 @@ const generateUniqueId = (req, pageSpecific) => {
                 I'll update this page.
             </p>
         </div>
+        {{it.components.footer}}
     </body>
 </html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="The API page for beanpoems.com" />
+        <link rel="stylesheet" href="/assets/styles/reset.css" />
+        <link rel="stylesheet" href="/assets/styles/main.css" />
+        <title>Bean Poems | Analytics</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Analytics</h1>
+                <a href="/" class="nav-link">‹ Go back home</a>
+                <p class="body-text">
+                    This page tracks the amount of users that visit each site, but I managed to do
+                    it in a way that is more performant and privacy focused than Google Analytics
+                    using the secret technique of removing half of the features. Just kidding, but
+                    it is unique in the way that it uses zero cookies while still ensuring that a
+                    visitor is unique without being able to identify them.
+                </p>
+            </header>
+            <h2 class="heading">How it works</h2>
+            <p>
+                Each person that visits my site brings with them some information that can be used
+                to make a unique identifier for them. The server code combines all of this
+                information into a single hash using SHA256. Specifically, the information is:
+            </p>
+            <ul class="body-text">
+                <li>IP address</li>
+                <li>User Agent</li>
+                <li>Current day</li>
+                <li>The current page</li>
+            </ul>
+            <p class="body-text">
+                This means that we can count views across pages without being able to track a
+                specific user's history. If a page has already seen a hash, then that is a repeat
+                visitor, but that visitor will have a completely new hash if they decide to visit
+                another page! All that appears to me is a list of hashes that visited a route. There
+                is no way for me to extract anything meaningful from the hashes. This is what it
+                looks like to me:
+            </p>
+            <pre class="code block">
+{
+    "/": ["a/svXjSyMgxnSFw1vSYRJrau4Beraq/UfGzfPsp1Bg4", ...]
+    "/catalog/": ["ZS9VAWJDvxufG76kbVdJ74ktvjlORt6dZqsarPC0r1c", ...]
+    "/poems/mango": ["jwTocO0X61lx1VMMLc9XG+7eU7+5hq1EcQrot3NgM18", ...]
+}
+</pre
+            >
+            <p class="body-text">There's a lot going on in there.</p>
+            <h2 class="heading">Implementation</h2>
+            <p class="body-text">
+                Before the information gets hashed, a random base 36 number gets thrown into the
+                hash as well. This number is regenerated every 24 hours by the server. This ensures
+                that visits are counted by day. For example, a person viewing a specific poem across
+                two days will count as two views for that poem, allowing some rudimentary session
+                tracking.
+            </p>
+            <p class="body-text">
+                This is what the hash generator looks like. If <code>pageSpecific</code> is
+                <code>false</code>, then the hash is used to track visits to the site, which will
+                still be completely different from hashes used for specific pageviews.
+            </p>
+            <pre class="code block">
+const generateUniqueId = (req, pageSpecific) => {
+    const ip = req.ip;
+    const ua = req.get("user-agent");
+    const date = new Date().getDate().toString();
+    let uniqueID = randomString + ip + ua + date;
+    if (pageSpecific) {
+        // add the page to the hash
+        const page = req.originalUrl;
+        uniqueID += page;
+    }
+    return crypto.createHash("sha256").update(uniqueID).digest("base64");
+};
+</pre
+            >
+            <h2 class="heading">Future Work</h2>
+            <p class="body-text">
+                I think there's a lot of value in this type of cookie-less analytics. Even though
+                there's some good stuff here, there's a lot missing. For example, bounce rate and
+                more detailed session tracking would be really cool to see implemented.
+            </p>
+            <p class="body-text">
+                I think
+                <code
+                    ><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon"
+                        >Navigator.sendBeacon()</a
+                    ></code
+                >
+                would work really well in conjunction with <code>window.unload</code> to provide
+                specific timings of a session. The other obvious features that are missing are
+                geographical data from visitors and user retention analysis. That last one probably
+                can't be done within the constraints of this analytics framework.
+            </p>
+            <p class="body-text">
+                Right now, the analytics module is cleverly implemented as express middleware so
+                that a programmer can simply use <code>app.use(analyticsMiddleware)</code> at the
+                beginning of their server code to have simple plug-and-play analytics on all routes
+                of their site.
+            </p>
+            <p class="body-text">
+                Who knows? I might continue working on it and publish it as an npm module. If I do,
+                I'll update this page.
+            </p>
+        </div>
+    </body>
+</html>

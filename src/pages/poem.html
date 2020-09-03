@@ -4,14 +4,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="{{it.poem.description}}" />
-        <link rel="stylesheet" href="../assets/styles/reset.css" type="text/css" />
-        <link rel="stylesheet" href="../assets/styles/main.css" type="text/css" />
+        <link rel="stylesheet" href="/assets/styles/reset.css" type="text/css" />
+        <link rel="stylesheet" href="/assets/styles/main.css" type="text/css" />
         <title>{{it.config.data.name}} | {{it.poem.title}}</title>
     </head>
     <body>
         <div class="container">
             <header>
-                <a href="../" class="nav-link">‹ Go back home</a>
+                <a href="/" class="nav-link">‹ Go back home</a>
             </header>
             <div class="content">
                 <h2 class="poem-page-title">{{it.poem.title}}</h2>
@@ -28,14 +28,14 @@
             <hr />
             <div class="poem-navigators">
                 {{@if(it.prevPoem)}}
-                <a href="../{{it.prevPoem.path}}" class="poem-link">
+                <a href="/{{it.prevPoem.path}}/" class="poem-link">
                     <p class="link-desc">Previous</p>
                     <p class="poem-title">{{it.prevPoem.title}}</p>
                 </a>
                 {{#else}}
                 <div></div>
                 {{/if}} {{@if(it.nextPoem)}}
-                <a href="../{{it.nextPoem.path}}" class="poem-link next">
+                <a href="/{{it.nextPoem.path}}/" class="poem-link next">
                     <p class="link-desc">Next</p>
                     <p class="poem-title">{{it.nextPoem.title}}</p>
                 </a>

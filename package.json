@@ -4,8 +4,9 @@
     "description": "A website to share simple poetry",
     "main": "index.js",
     "scripts": {
-        "start": "node ./src/server.js",
-        "build": "node ./src/index.js"
+        "start": "node ./src/backend/server.js",
+        "build": "node ./src/index.js",
+        "dev": "nodemon ./src/backend/server.js"
     },
     "repository": {
         "type": "git",
@@ -23,9 +24,11 @@
     "dependencies": {
         "express": "^4.17.1",
         "front-matter": "^4.0.2",
-        "marked": "^1.1.1"
+        "marked": "^1.1.1",
+        "mongoose": "^5.10.2"
     },
     "devDependencies": {
+        "nodemon": "^2.0.4",
         "squirrelly": "^8.0.4"
     }
 }

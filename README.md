@@ -3,3 +3,4 @@
 -   Analytics
 -   Contact
 -   API
+-   Auto deploy

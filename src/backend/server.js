@@ -1,11 +1,20 @@
+// https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 const express = require("express");
 const path = require("path");
-const { getPoemsApi } = require("./poems");
+
+const { getPoemsApi } = require("../poems");
+const analyticsMiddleware = require("./analytics");
+const { connectToDB } = require("./db/db");
+
+// start db
+connectToDB();
 
 const app = express();
 
 // get the poems data
 const poemsData = getPoemsApi();
+
+app.use(analyticsMiddleware);
 
 app.use(express.static("public"));
 

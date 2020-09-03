@@ -4,19 +4,19 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Catalog of poems" />
-        <link rel="stylesheet" href="../assets/styles/reset.css" />
-        <link rel="stylesheet" href="../assets/styles/main.css" />
+        <link rel="stylesheet" href="/assets/styles/reset.css" />
+        <link rel="stylesheet" href="/assets/styles/main.css" />
         <title>{{it.data.name}} | Catalog</title>
     </head>
     <body>
         <div class="container">
             <header>
                 <h1>All Poems</h1>
-                <a href="../" class="nav-link">‹ Go back home</a>
+                <a href="/" class="nav-link">‹ Go back home</a>
             </header>
             <div>
                 {{@each(it.poems) => poem}}
-                <a href="../{{poem.path}}" class="poem-link">
+                <a href="/{{poem.path}}/" class="poem-link">
                     <p class="poem-title">{{poem.title}}</p>
                     <p class="poem-date">{{poem.date}}</p>
                     <ul class="category-container">

@@ -75,11 +75,26 @@ h3 {
     font-weight: 600;
     margin-bottom: 10px;
 }
+.heading {
+    margin-top: 20px;
+}
 p {
     font-size: 1rem;
     line-height: 1.5;
 }
+.body-text {
+    margin-bottom: 15px;
+}
 
+ul {
+    list-style-type: circle;
+}
+ul li {
+    margin-left: 30px;
+}
+ul li:not(:last-child) {
+    margin-bottom: 5px;
+}
 code {
     white-space: nowrap;
     max-width: 100%;

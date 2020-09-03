@@ -4,8 +4,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="{{it.data.description}}" />
-        <link rel="stylesheet" href="assets/styles/reset.css" />
-        <link rel="stylesheet" href="assets/styles/main.css" />
+        <link rel="stylesheet" href="/assets/styles/reset.css" />
+        <link rel="stylesheet" href="/assets/styles/main.css" />
         <title>{{it.data.name}}</title>
     </head>
     <body>
@@ -21,7 +21,7 @@
             <div>
                 <h2>Latest Poems</h2>
                 {{@each(it.poems.slice(0, 3)) => poem}}
-                <a href="{{poem.path}}" class="poem-link">
+                <a href="/{{poem.path}}/" class="poem-link">
                     <p class="poem-title">{{poem.title}}</p>
                     <p class="poem-date">{{poem.date}}</p>
                     <ul class="category-container">
@@ -31,7 +31,7 @@
                     </ul>
                 </a>
                 {{/each}}
-                <a href="{{it.paths.catalog}}" class="nav-link">
+                <a href="/{{it.paths.catalog}}/" class="nav-link">
                     See all {{it.poems.length}} poems ›
                 </a>
             </div>

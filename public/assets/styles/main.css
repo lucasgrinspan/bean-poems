@@ -164,6 +164,11 @@ footer a {
 }
 footer ul {
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+}
+footer ul li {
+    margin-right: 10px;
 }
 button {
     font-size: 1.25rem;

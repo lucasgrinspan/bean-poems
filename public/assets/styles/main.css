@@ -92,7 +92,7 @@ ul.list {
 ul.list li {
     margin-left: 30px;
 }
-ul li:not(:last-child) {
+ul.list li:not(:last-child) {
     margin-bottom: 5px;
 }
 code {

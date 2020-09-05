@@ -16,7 +16,7 @@
             </header>
             <div>
                 {{@each(it.poems) => poem}}
-                <a href="/{{poem.path}}/" class="poem-link">
+                <a href="/poems/{{poem.path}}/" class="poem-link">
                     <p class="poem-title">{{poem.title}}</p>
                     <p class="poem-date">{{poem.date}}</p>
                     <ul class="category-container">

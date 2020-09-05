@@ -57,9 +57,12 @@ fs.writeFile(`${config.dev.outDir}/index.html`, homeHtml, (error) => {
 });
 
 // Create the pages for each poem
+if (!fs.existsSync(`${config.dev.outDir}/poems/`)) {
+    fs.mkdirSync(`${config.dev.outDir}/poems/`);
+}
 poemsData.forEach((poem, index) => {
-    if (!fs.existsSync(`${config.dev.outDir}/${poem.path}`)) {
-        fs.mkdirSync(`${config.dev.outDir}/${poem.path}`);
+    if (!fs.existsSync(`${config.dev.outDir}/poems/${poem.path}`)) {
+        fs.mkdirSync(`${config.dev.outDir}/poems/${poem.path}`);
     }
     const poemData = {
         poem, // poem data
@@ -72,12 +75,12 @@ poemsData.forEach((poem, index) => {
     const poemTemplate = fs.readFileSync("./src/pages/poem.html", "utf8");
     const poemHtml = sqrl.render(poemTemplate, poemData);
 
-    fs.writeFile(`${config.dev.outDir}/${poem.path}/index.html`, poemHtml, (error) => {
+    fs.writeFile(`${config.dev.outDir}/poems/${poem.path}/index.html`, poemHtml, (error) => {
         if (error) {
-            logError(poem.path + "/index.html");
+            logError("poems/" + poem.path + "/index.html");
             throw error;
         }
-        logSuccess(poem.path + "/index.html");
+        logSuccess("poems/" + poem.path + "/index.html");
     });
 });
 

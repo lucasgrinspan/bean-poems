@@ -26,14 +26,14 @@
             <hr />
             <div class="poem-navigators">
                 {{@if(it.prevPoem)}}
-                <a href="/{{it.prevPoem.path}}/" class="poem-link">
+                <a href="/poems/{{it.prevPoem.path}}/" class="poem-link">
                     <p class="link-desc">Previous</p>
                     <p class="poem-title">{{it.prevPoem.title}}</p>
                 </a>
                 {{#else}}
                 <div></div>
                 {{/if}} {{@if(it.nextPoem)}}
-                <a href="/{{it.nextPoem.path}}/" class="poem-link next">
+                <a href="/poems/{{it.nextPoem.path}}/" class="poem-link next">
                     <p class="link-desc">Next</p>
                     <p class="poem-title">{{it.nextPoem.title}}</p>
                 </a>

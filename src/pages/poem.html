@@ -21,9 +21,7 @@
                     <li class="poem-category" data-category="{{category}}">{{category}}</li>
                     {{/each}}
                 </ul>
-                <div class="poem">
-                    <pre>{{it.poem.body | safe}}</pre>
-                </div>
+                <div class="poem">{{it.poem.body | safe}}</div>
             </div>
             <hr />
             <div class="poem-navigators">

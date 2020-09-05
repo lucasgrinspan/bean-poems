@@ -31,7 +31,7 @@
                 <li>IP address</li>
                 <li>User Agent</li>
                 <li>Current day</li>
-                <li>The current page</li>
+                <li>Current page</li>
             </ul>
             <p class="body-text">
                 This means that we can count views across pages without being able to track a
@@ -55,8 +55,8 @@
                 Before the information gets hashed, a random base 36 number gets thrown into the
                 hash as well. This number is regenerated every 24 hours by the server. This ensures
                 that visits are counted by day. For example, a person viewing a specific poem across
-                two days will count as two views for that poem, allowing some rudimentary session
-                tracking.
+                two days will count as two views for that poem, allowing for some rudimentary
+                session tracking.
             </p>
             <p class="body-text">
                 This is what the hash generator looks like. If <code>pageSpecific</code> is
@@ -107,14 +107,14 @@ const generateUniqueId = (req, pageSpecific) => {
                 I'll update this page.
             </p>
         </div>
-        &lt;footer&gt;
-    &lt;div class=&quot;container&quot;&gt;
-        &lt;ul&gt;
-            &lt;li&gt;&lt;a href=&quot;/api/&quot;&gt;API&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;/analytics/&quot;&gt;Analytics&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;p&gt;© 2020, Made with &lt;span class=&quot;heart&quot;&gt;&lt;/span&gt; by Lucas Grinspan&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/footer&gt;
+        <footer>
+    <div class="container">
+        <ul>
+            <li><a href="/api/">API</a></li>
+            <li><a href="/analytics/">Analytics</a></li>
+        </ul>
+        <p>© 2020, Made with <span class="heart"></span> by Lucas Grinspan</p>
+    </div>
+</footer>
     </body>
 </html>

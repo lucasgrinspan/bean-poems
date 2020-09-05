@@ -56,10 +56,14 @@ body {
     justify-content: space-between;
     background-color: var(--bg);
     color: var(--text-dark);
-    overflow-x: hidden;
     min-height: 100vh;
 }
 
+@media only screen and (max-width: 800px) {
+    body {
+        align-items: flex-start;
+    }
+}
 h1 {
     font-size: 3rem;
     font-weight: 800;
@@ -152,7 +156,6 @@ a.nav-link {
 footer {
     background-color: var(--dark-bg);
     color: var(--light-text);
-    padding: 10px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -180,7 +183,7 @@ button,
 .poem-link {
     text-decoration: none;
     display: block;
-    transition: all 250ms ease-in-out;
+    transition: border-color 250ms ease-in-out;
     margin-bottom: 20px;
     padding: 10px;
     border: 2px solid var(--inactive);
@@ -236,6 +239,7 @@ div.poem-navigators {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 div.section {
@@ -245,9 +249,17 @@ div.section {
 }
 
 div.container {
-    width: 95%;
     max-width: var(--max-width);
     padding: 15px;
+    width: calc(100% - 30px);
+}
+div.spacer {
+    width: 100%;
+    height: 4px;
+}
+div.spacer-2 {
+    width: 100%;
+    height: 12px;
 }
 
 div.poem {

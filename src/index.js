@@ -12,7 +12,16 @@ sqrl.filters.define("toArray", (array) => {
 });
 
 // Prepare all of the poems
-const poemsData = getPoems();
+const poemsData = getPoems().map((poem) => {
+    return {
+        ...poem,
+        // Allows differentiating line spacing between text wrap and
+        // line breaks in poems
+        body: poem.body
+            .replace(/\n\n/g, '<div class="spacer-2"></div>')
+            .replace(/\n/g, '<div class="spacer"></div>'),
+    };
+});
 
 // Create the public folder
 if (!fs.existsSync(config.dev.outDir)) {

@@ -15,6 +15,7 @@
     --pastel-green: #b5ead7;
     --pastel-red: #ff9aa2;
     --pastel-brown: #beb091;
+    --pastel-pink: #dda4cc;
 
     --syntax-1: #851d1d;
     --syntax-2: #1d7012;
@@ -259,7 +260,7 @@ div.spacer {
 }
 div.spacer-2 {
     width: 100%;
-    height: 12px;
+    height: 15px;
 }
 
 div.poem {
@@ -307,6 +308,9 @@ img.square-image {
 }
 *[data-category="Coffee"] {
     background-color: var(--pastel-brown);
+}
+*[data-category="Love"] {
+    background-color: var(--pastel-pink);
 }
 
 /* syntax highlighting */

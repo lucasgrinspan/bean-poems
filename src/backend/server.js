@@ -47,7 +47,7 @@ app.get("/api/*", (req, res) => {
 
 // general 404
 app.get("*", (req, res) => {
-    res.status(404).sendFile(path.join(__dirname, "../public/404/index.html"));
+    res.status(404).sendFile(path.join(__dirname, "../../public/404/index.html"));
 });
 
 app.listen(5000, () => console.log("Server started"));

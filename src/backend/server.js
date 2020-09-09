@@ -59,10 +59,11 @@ app.post("/subscribe", (req, res) => {
 app.get("/unsub", (req, res) => {
     res.sendFile(path.join(__dirname, "../../public/unsubscribe/index.html"));
     const key = req.query.key;
+    if (key) {
+        const email = decryptData(key);
 
-    const email = decryptData(key);
-
-    removeSubscription(email);
+        removeSubscription(email);
+    }
 });
 
 // general 404

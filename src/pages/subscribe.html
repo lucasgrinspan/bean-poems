@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Catalog of poems" />
+        <link rel="stylesheet" href="/assets/styles/reset.css" />
+        <link rel="stylesheet" href="/assets/styles/main.css" />
+        <title>{{it.data.name}} | Subscribe</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Poems to your Inbox</h1>
+                <a href="/" class="nav-link">‹ Go back home</a>
+            </header>
+            <div>
+                <p>Whenever a poem goes out, my server will send you the poem to your email.</p>
+                <p>I'll never share your email with anybody else!</p>
+                <form class="email-input-form" action="/subscribe" method="POST">
+                    <h3>Sounds interesting?</h3>
+                    <div class="button-with-input">
+                        <input
+                            size="1"
+                            aria-label="Email"
+                            type="email"
+                            placeholder="you@example.com"
+                            name="email"
+                            id="email"
+                        />
+                        <button type="submit">Sign up</button>
+                    </div>
+                </form>
+                <p>
+                    This is serving as practice for me, so I apologize for any stray emails
+                    <span aria-hidden="true">😅</span>
+                </p>
+            </div>
+        </div>
+        {{it.components.footer | safe}}
+    </body>
+</html>

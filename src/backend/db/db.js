@@ -11,6 +11,11 @@ const pageviewSchema = new mongoose.Schema({
 });
 const Pageview = mongoose.model("Pageviews", pageviewSchema);
 
+const emailSchema = new mongoose.Schema({
+    email: String,
+});
+const Email = mongoose.model("Subscriptions", emailSchema);
+
 const connectToDB = () => {
     mongoose.connect(url, {
         useNewUrlParser: true,
@@ -44,7 +49,23 @@ const addToPageview = (pagePath, views) => {
     );
 };
 
+const addSubscription = (email) => {
+    Email.create({ email });
+    console.log("Email added: " + email);
+};
+
+const removeSubscription = (email) => {
+    Email.deleteOne({ email }, (err) => {
+        if (err) {
+            console.error(err);
+        }
+        console.log("Email removed: " + email);
+    });
+};
+
 module.exports = {
     connectToDB,
     addToPageview,
+    addSubscription,
+    removeSubscription,
 };

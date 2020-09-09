@@ -19,6 +19,7 @@
             <p class="large">or...</p>
             <button class="center" onclick="navigateToRandomPoem()">Try a random poem!</button>
         </div>
+        {{ it.components.footer | safe}}
         <script>
             const navigateToRandomPoem = () => {
                 const poems = {{it.poems | toArray | safe}};

@@ -1,10 +1,12 @@
 // https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 const express = require("express");
+const bodyParser = require("body-parser");
 const path = require("path");
 
 const { getPoemsApi } = require("../poems");
 const analyticsMiddleware = require("./analytics");
-const { connectToDB } = require("./db/db");
+const { connectToDB, addSubscription, removeSubscription } = require("./db/db");
+const { sendEmail, decryptData } = require("./mail/mailer");
 
 // start db
 connectToDB();
@@ -15,6 +17,7 @@ const app = express();
 const poemsData = getPoemsApi();
 
 app.use(analyticsMiddleware);
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
@@ -43,6 +46,23 @@ app.get("/api/poems/:id", (req, res) => {
 // 404 on api
 app.get("/api/*", (req, res) => {
     res.status(404).send({ error: "API path does not exist" });
+});
+
+// subscribe form
+app.post("/subscribe", (req, res) => {
+    addSubscription(req.body.email);
+    sendEmail(req.body.email, "subscribe");
+    res.sendFile(path.join(__dirname, "../../public/thank-you/index.html"));
+});
+
+// unsubscribe
+app.get("/unsub", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../public/unsubscribe/index.html"));
+    const key = req.query.key;
+
+    const email = decryptData(key);
+
+    removeSubscription(email);
 });
 
 // general 404

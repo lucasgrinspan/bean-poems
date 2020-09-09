@@ -1,6 +1,11 @@
-### Planned Features
+### Features
 
 -   Analytics
--   Contact
+-   Subscriptions
 -   API
+
+### Planned Features
+
+-   Contact
 -   Auto deploy
+-   Rate limiter

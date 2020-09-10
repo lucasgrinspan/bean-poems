@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {{it.components.head | safe}}
         <meta name="description" content="{{it.poem.description}}" />
-        <link rel="stylesheet" href="/assets/styles/reset.css" type="text/css" />
-        <link rel="stylesheet" href="/assets/styles/main.css" type="text/css" />
         <title>{{it.config.data.name}} | {{it.poem.title}}</title>
     </head>
     <body>

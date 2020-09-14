@@ -69,6 +69,11 @@ h1 {
     font-size: 3rem;
     font-weight: 800;
 }
+img.logo {
+    height: 2rem;
+    width: 2rem;
+    margin-right: 10px;
+}
 p.large,
 h2 {
     font-size: 2rem;
